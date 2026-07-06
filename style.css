@@ -293,69 +293,7 @@ h2 em {
     margin-bottom: 22px;
 }
 
-/* Search bar */
-.search-bar {
-    background: #fff;
-    border-radius: 14px;
-    padding: 18px 20px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    align-items: flex-end;
-    box-shadow: 0 4px 28px rgba(0, 0, 0, .2);
-    max-width: 780px;
-}
 
-.sf {
-    flex: 1;
-    min-width: 130px;
-}
-
-.sf label {
-    display: block;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--muted);
-    margin-bottom: 5px;
-    letter-spacing: .05em;
-    text-transform: uppercase;
-}
-
-.sf select {
-    width: 100%;
-    padding: 10px 12px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    font-family: 'Outfit', sans-serif;
-    font-size: 14px;
-    color: var(--text);
-    background: #fafafa url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 10 10'%3E%3Cpath fill='%236b7060' d='M5 7L0 2h10z'/%3E%3C/svg%3E") no-repeat right 10px center;
-    appearance: none;
-    cursor: pointer;
-}
-
-.sf select:focus {
-    outline: none;
-    border-color: var(--red);
-}
-
-.btn-red {
-    background: var(--red);
-    color: #fff;
-    border: none;
-    padding: 11px 26px;
-    border-radius: 9px;
-    font-family: 'Outfit', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background .15s;
-    white-space: nowrap;
-}
-
-.btn-red:hover {
-    background: var(--red-dark);
-}
 
 /* ── BADGES ── */
 .badges {
