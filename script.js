@@ -28,7 +28,13 @@ document.querySelector('.search-bar .btn-red').addEventListener('click', functio
     // Convertir le budget en nombre
     const budgetMax = budget === 'Pas de limite'
         ? Infinity
-        : parseInt(budget.replace(/\s/g, '').replace('Ar', ''));
+        : parseInt(
+            budget
+                .replace(/\u00a0/g, '')
+                .replace(/\s+/g, '')
+                .replace('Ar', '')
+                .replace(/\./g, '')
+        );
 
     // Aller sur la section Achat
     switchTab('achat');
@@ -40,9 +46,13 @@ document.querySelector('.search-bar .btn-red').addEventListener('click', functio
         document.querySelectorAll('#achat .car-card').forEach(card => {
             const cardBrand = card.dataset.brand;
             const priceText = card.querySelector('.car-price').childNodes[0].textContent
-                .replace(/\s/g, '').replace('Ar', '');
+                .trim()
+                .replace(/\u00a0/g, '')   // espace insécable
+                .replace(/\s+/g, '')      // tous les espaces
+                .replace('Ar', '')
+                .replace(/\./g, '');
             const cardPrice = parseInt(priceText);
-
+            console.log(cardBrand, cardPrice, budgetMax);
             const brandMatch = marque === 'Toutes marques' || cardBrand === marque;
             const budgetMatch = isNaN(cardPrice) || cardPrice <= budgetMax;
 
