@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MadaCars — Spécialiste voiture d'occasion à Madagascar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ═══════════ MODAL DÉTAIL VOITURE ═══════════ -->
+    <div id="modal-overlay"></div>
+    <div id="car-modal">
+        <button id="modal-close">✕</button>
+        <div id="modal-inner">
+            <div id="modal-left">
+                <span id="m-ribbon" class="ribbon promo"></span>
+                <img id="m-img" src="" alt="">
+                <div id="m-tags" style="margin-top:12px;display:flex;flex-wrap:wrap;gap:6px;"></div>
+            </div>
+            <div id="modal-right">
+                <div id="m-brand" class="car-brand"></div>
+                <h2 id="m-name"></h2>
+                <div id="m-meta" class="car-meta" style="margin-bottom:16px;font-size:14px;"></div>
+                <div id="m-price" class="car-price" style="font-size:28px;margin-bottom:4px;"></div>
+                <div id="m-old" style="color:#6b7060;font-size:13px;margin-bottom:20px;"></div>
+
+                <div class="modal-info-grid">
+                    <div class="mi"><span>Contrôle</span><b>80 points vérifiés</b></div>
+                    <div class="mi"><span>Garantie</span><b>6 mois</b></div>
+                    <div class="mi"><span>Livraison</span><b>Antananarivo</b></div>
+                    <div class="mi"><span>Dossier</span><b>Inclus &amp; complet</b></div>
+                </div>
+
+                <div class="modal-pay">
+                    <div class="pay-title">💳 Modes de paiement acceptés</div>
+                    <div class="pay-row">
+                        <span class="pay-chip">Visa</span>
+                        <span class="pay-chip">Mastercard</span>
+                        <span class="pay-chip">Virement bancaire</span>
+                        <span class="pay-chip">Chèque certifié</span>
+                    </div>
+                </div>
+
+                <button class="btn-red" style="width:100%;margin-top:20px;padding:14px;" onclick="closeModal()">
+                    Contacter le vendeur →
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══════════ HEADER / NAVIGATION ═══════════ -->
+    <header>
+        <div class="nav-inner">
+            <a class="logo" href="#">
+                <div class="logo-icon">M</div>Mada<em>Cars</em>
+            </a>
+            <nav class="nav-links">
+                <button class="nav-btn active" data-target="accueil">Accueil</button>
+                <button class="nav-btn" data-target="achat">Achat</button>
+                <button class="nav-btn" data-target="reprise">Reprise</button>
+                <button class="nav-btn" data-target="promesse">Notre Promesse</button>
+                <button class="nav-btn" data-target="contact">Contact</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ═══════════════════════ ACCUEIL ═══════════════════════ -->
+        <section id="accueil" class="visible">
+            <div class="hero">
+                <img class="hero-img" src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1400&q=80"
+                    alt="Route Madagascar">
+                <div class="hero-content">
+                    <p class="kicker">🇲🇬 N°1 de la voiture d'occasion à Madagascar</p>
+                    <h1>Le meilleur choix pour votre<br><em>prochaine voiture d'occasion</em></h1>
+                    <p class="sub">Des véhicules contrôlés, garantis et préparés — basés à Antananarivo, au cœur de
+                        Madagascar.</p>
+                    <div class="search-bar">
+                        <div class="sf"><label>Marque</label>
+                            <select>
+                                <option>Toutes marques</option>
+                                <option>Toyota</option>
+                                <option>Peugeot</option>
+                                <option>Renault</option>
+                                <option>Mitsubishi</option>
+                                <option>Hyundai</option>
+                                <option>Suzuki</option>
+                                <option>Ford</option>
+                            </select>
+                        </div>
+                        <div class="sf"><label>Ville</label>
+                            <select>
+                                <option>Toutes villes</option>
+                                <option>Antananarivo</option>
+                            </select>
+                        </div>
+                        <div class="sf"><label>Budget max</label>
+                            <select>
+                                <option>10 000 000 Ar</option>
+                                <option>20 000 000 Ar</option>
+                                <option>35 000 000 Ar</option>
+                                <option>50 000 000 Ar</option>
+                                <option>Pas de limite</option>
+                            </select>
+                        </div>
+                        <button class="btn-red" onclick="switchTab('achat')">Rechercher →</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="badges">
+                    <div class="badge">
+                        <div class="ico">📍</div><b>Antananarivo</b><span>Notre agence principale</span>
+                    </div>
+                    <div class="badge">
+                        <div class="ico">✅</div><b>Voitures contrôlées</b><span>&amp; garanties 6 mois</span>
+                    </div>
+                    <div class="badge">
+                        <div class="ico">🔧</div><b>80 points de contrôle</b><span>Avant chaque vente</span>
+                    </div>
+                    <div class="badge">
+                        <div class="ico">🚗</div><b>Préparées &amp; nettoyées</b><span>Avant livraison</span>
+                    </div>
+                    <div class="badge">
+                        <div class="ico">💳</div><b>Visa / Virement</b><span>Paiement sécurisé</span>
+                    </div>
+                </div>
+
+                <div class="promo-strip">
+                    <div class="left">
+                        <span class="badge-new">🔥 Vente Flash</span>
+                        <h2>Jusqu'à −15 % sur une sélection de véhicules</h2>
+                        <p>Profitez de nos promotions de saison sur les modèles les plus populaires. Offre valable
+                            jusqu'au 31 juillet 2026.</p>
+                    </div>
+                    <button class="btn-red" onclick="switchTab('achat')">Voir les offres →</button>
+                </div>
+
+                <div class="section-head">
+                    <div>
+                        <div class="eyebrow">Arrivée récente</div>
+                        <h2>Nouveaux <em>véhicules</em></h2>
+                    </div>
+                    <button class="see-all" onclick="switchTab('achat')">Voir tout →</button>
+                </div>
+                <div class="cars-grid">
+                    <div class="car-card" data-brand="Toyota"><span class="ribbon new">Nouveau</span>
+                        <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=500&q=80"
+                            alt="Toyota Corolla">
+                        <div class="car-info">
+                            <div class="car-brand">Toyota</div>
+                            <h3>Corolla</h3>
+                            <div class="car-meta">2022 · 12 000 km · Essence · Automatique</div>
+                            <div class="car-price">34 000 000 Ar<small>~7 600 €</small></div>
+                            <div class="tag-row"><span class="tag green">✓ Vérifié</span><span class="tag blue">Garantie
+                                    6 mois</span></div>
+                        </div>
+                    </div>
+                    <div class="car-card" data-brand="Suzuki"><span class="ribbon new">Nouveau</span>
+                        <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=500&q=80"
+                            alt="Suzuki Swift">
+                        <div class="car-info">
+                            <div class="car-brand">Suzuki</div>
+                            <h3>Swift</h3>
+                            <div class="car-meta">2021 · 18 000 km · Essence · Manuelle</div>
+                            <div class="car-price">17 500 000 Ar<small>~3 900 €</small></div>
+                            <div class="tag-row"><span class="tag green">✓ Vérifié</span><span class="tag blue">Garantie
+                                    6 mois</span></div>
+                        </div>
+                    </div>
+                    <div class="car-card" data-brand="Mitsubishi"><span class="ribbon promo">−12 %</span>
+                        <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=500&q=80"
+                            alt="Mitsubishi L200">
+                        <div class="car-info">
+                            <div class="car-brand">Mitsubishi</div>
+                            <h3>L200 Pick-Up</h3>
+                            <div class="car-meta">2018 · 72 000 km · Diesel · 4×4</div>
+                            <div class="car-price">33 400 000 Ar<small>était 38 000 000 Ar</small></div>
+                            <div class="tag-row"><span class="tag green">✓ Vérifié</span><span class="tag yellow">Vente
+                                    Flash</span></div>
+                        </div>
+                    </div>
+                    <div class="car-card" data-brand="Renault"><span class="ribbon new">Nouveau</span>
+                        <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=500&q=80"
+                            alt="Renault Clio">
+                        <div class="car-info">
+                            <div class="car-brand">Renault</div>
+                            <h3>Clio V</h3>
+                            <div class="car-meta">2021 · 22 000 km · Essence · Manuelle</div>
+                            <div class="car-price">20 500 000 Ar<small>~4 600 €</small></div>
+                            <div class="tag-row"><span class="tag green">✓ Vérifié</span><span class="tag blue">Garantie
+                                    6 mois</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-head" style="margin-top:14px;">
+                    <div>
+                        <div class="eyebrow">Les plus demandés</div>
+                        <h2>Véhicules <em>populaires</em></h2>
+                    </div>
+                    <button class="see-all" onclick="switchTab('achat')">Voir tout →</button>
+                </div>
+                <div class="cars-grid">
+                    <div class="car-card" data-brand="Peugeot">
+                        <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=500&q=80"
+                            alt="Peugeot 208">
+                        <div class="car-info">
+                            <div class="car-brand">Peugeot</div>
+                            <h3>208</h3>
+                            <div class="car-meta">2019 · 45 000 km · Diesel · Manuelle</div>
+                            <div class="car-price">22 500 000 Ar<small>~5 000 €</small></div>
+                            <div class="tag-row"><span class="tag green">✓ Vérifié</span></div>
+                        </div>
+                    </div>
+                    <div class="car-card" data-brand="Hyundai">
+                        <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=500&q=80"
+                            alt="Hyundai i20">
+                        <div class="car-info">
+                            <div class="car-brand">Hyundai</div>
+                            <h3>i20</h3>
+                            <div class="car-meta">2020 · 31 000 km · Essence · Manuelle</div>
+                            <div class="car-price">18 000 000 Ar<small>~4 000 €</small></div>
+                            <div class="tag-row"><span class="tag green">✓ Vérifié</span></div>
+                        </div>
+                    </div>
+                    <div class="car-card" data-brand="Volkswagen">
+                        <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?w=500&q=80" alt="VW Polo">
+                        <div class="car-info">
+                            <div class="car-brand">Volkswagen</div>
+                            <h3>Polo</h3>
+                            <div class="car-meta">2018 · 58 000 km · Diesel · Manuelle</div>
+                            <div class="car-price">19 500 000 Ar<small>~4 350 €</small></div>
+                            <div class="tag-row"><span class="tag green">✓ Vérifié</span></div>
+                        </div>
+                    </div>
+                    <div class="car-card" data-brand="Toyota">
+                        <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=500&q=80"
+                            alt="Toyota RAV4">
+                        <div class="car-info">
+                            <div class="car-brand">Toyota</div>
+                            <h3>RAV4</h3>
+                            <div class="car-meta">2017 · 82 000 km · Diesel · 4×4</div>
+                            <div class="car-price">42 000 000 Ar<small>~9 400 €</small></div>
+                            <div class="tag-row"><span class="tag green">✓ Vérifié</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-head" style="margin-top:14px;">
+                    <div>
+                        <div class="eyebrow">Mises à jour</div>
+                        <h2>Nos <em>actualités</em></h2>
+                    </div>
+                </div>
+                <div class="news-grid">
+                    <div class="news-card">
+                        <img src="https://images.unsplash.com/photo-1485291571150-772bcfc10da5?w=600&q=80"
+                            alt="Actualité">
+                        <div class="news-body">
+                            <div class="news-date">25 juin 2026</div>
+                            <h3>Nouveau showroom à Antananarivo — Centre-ville</h3>
+                            <p>MadaCars agrandit ses locaux pour accueillir encore plus de véhicules vérifiés.</p>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <img src="https://images.unsplash.com/photo-1580274455191-1c62238fa333?w=600&q=80"
+                            alt="Contrôle">
+                        <div class="news-body">
+                            <div class="news-date">10 juin 2026</div>
+                            <h3>Paiement par carte Visa désormais disponible</h3>
+                            <p>MadaCars accepte maintenant les paiements par carte bancaire Visa et Mastercard.</p>
+                        </div>
+                    </div>
+                    <div class="news-card">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Promotion">
+                        <div class="news-body">
+                            <div class="news-date">1 juillet 2026</div>
+                            <h3>Vente Flash juillet : jusqu'à −15 % sur 30 véhicules</h3>
+                            <p>Découvrez notre sélection de véhicules en promotion pour tout le mois de juillet.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════ ACHAT ═══════════════════════ -->
+        <section id="achat">
+            <div class="page-top">
+                <div class="container">
+                    <div class="eyebrow">Catalogue complet</div>
+                    <h1>Nos <em>véhicules disponibles</em></h1>
+                    <p class="sub">Cliquez sur un véhicule pour voir tous ses détails. Contrôlés 80 points, garantis 6
+                        mois.</p>
+                </div>
+            </div>
+            <div class="container">
+                <div class="filter-row">
+                    <button class="pill sel" data-brand="all">Tous</button>
+                    <button class="pill" data-brand="Toyota">Toyota</button>
+                    <button class="pill" data-brand="Peugeot">Peugeot</button>
+                    <button class="pill" data-brand="Renault">Renault</button>
+                    <button class="pill" data-brand="Mitsubishi">Mitsubishi</button>
+                    <button class="pill" data-brand="Hyundai">Hyundai</button>
+                    <button class="pill" data-brand="Suzuki">Suzuki</button>
+                    <button class="pill" data-brand="Ford">Ford</button>
+                    <button class="pill" data-brand="Volkswagen">Volkswagen</button>
+                </div>
+
+                <!-- GROUPE : Ventes Flash -->
+                <div class="cars-group">
+                    <div class="section-head">
+                        <div>
+                            <div class="eyebrow">🔥 Offres limitées</div>
+                            <h2>Ventes <em>Flash</em></h2>
+                        </div>
+                    </div>
+                    <div class="cars-grid">
+                        <div class="car-card" data-brand="Mitsubishi"><span class="ribbon promo">−12 %</span>
+                            <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?w=500&q=80"
+                                alt="Mitsubishi L200">
+                            <div class="car-info">
+                                <div class="car-brand">Mitsubishi</div>
+                                <h3>L200 Pick-Up</h3>
+                                <div class="car-meta">2018 · 72 000 km · Diesel · 4×4</div>
+                                <div class="car-price">33 400 000 Ar<small>était 38 000 000 Ar</small></div>
+                                <div class="tag-row"><span class="tag green">✓ Vérifié</span><span
+                                        class="tag yellow">Jusqu'au 31 juil.</span></div>
+                            </div>
+                        </div>
+                        <div class="car-card" data-brand="Toyota"><span class="ribbon promo">−10 %</span>
+                            <img src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=500&q=80"
+                                alt="Toyota RAV4">
+                            <div class="car-info">
+                                <div class="car-brand">Toyota</div>
+                                <h3>RAV4</h3>
+                                <div class="car-meta">2017 · 82 000 km · Diesel · 4×4</div>
+                                <div class="car-price">37 800 000 Ar<small>était 42 000 000 Ar</small></div>
+                                <div class="tag-row"><span class="tag green">✓ Vérifié</span><span
+                                        class="tag yellow">Jusqu'au 31 juil.</span></div>
+                            </div>
+                        </div>
+                        <div class="car-card" data-brand="Volkswagen"><span class="ribbon promo">−15 %</span>
+                            <img src="https://images.unsplash.com/photo-1542362567-b07e54358753?w=500&q=80"
+                                alt="VW Polo">
+                            <div class="car-info">
+                                <div class="car-brand">Volkswagen</div>
+                                <h3>Polo</h3>
+                                <div class="car-meta">2018 · 58 000 km · Diesel · Manuelle</div>
+                                <div class="car-price">16 575 000 Ar<small>était 19 500 000 Ar</small></div>
+                                <div class="tag-row"><span class="tag green">✓ Vérifié</span><span
+                                        class="tag yellow">Jusqu'au 31 juil.</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GROUPE : Nouveaux -->
+                <div class="cars-group">
+                    <div class="section-head" style="margin-top:14px;">
+                        <div>
+                            <div class="eyebrow">Arrivée récente</div>
+                            <h2>Nouveaux <em>véhicules</em></h2>
+                        </div>
+                    </div>
+                    <div class="cars-grid">
+                        <div class="car-card" data-brand="Toyota"><span class="ribbon new">Nouveau</span>
+                            <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=500&q=80"
+                                alt="Toyota Corolla">
+                            <div class="car-info">
+                                <div class="car-brand">Toyota</div>
+                                <h3>Corolla</h3>
+                                <div class="car-meta">2022 · 12 000 km · Essence · Automatique</div>
+                                <div class="car-price">34 000 000 Ar<small>~7 600 €</small></div>
+                                <div class="tag-row"><span class="tag green">✓ Vérifié</span><span
+                                        class="tag blue">Garantie 6 mois</span></div>
+                            </div>
+                        </div>
+                        <div class="car-card" data-brand="Suzuki"><span class="ribbon new">Nouveau</span>
+                            <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=500&q=80"
+                                alt="Suzuki Swift">
+                            <div class="car-info">
+                                <div class="car-brand">Suzuki</div>
+                                <h3>Swift</h3>
+                                <div class="car-meta">2021 · 18 000 km · Essence · Manuelle</div>
+                                <div class="car-price">17 500 000 Ar<small>~3 900 €</small></div>
+                                <div class="tag-row"><span class="tag green">✓ Vérifié</span><span
+                                        class="tag blue">Garantie 6 mois</span></div>
+                            </div>
+                        </div>
+                        <div class="car-card" data-brand="Renault"><span class="ribbon new">Nouveau</span>
+                            <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=500&q=80"
+                                alt="Renault Clio">
+                            <div class="car-info">
+                                <div class="car-brand">Renault</div>
+                                <h3>Clio V</h3>
+                                <div class="car-meta">2021 · 22 000 km · Essence · Manuelle</div>
+                                <div class="car-price">20 500 000 Ar<small>~4 600 €</small></div>
+                                <div class="tag-row"><span class="tag green">✓ Vérifié</span><span
+                                        class="tag blue">Garantie 6 mois</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GROUPE : Catalogue -->
+                <div class="cars-group">
+                    <div class="section-head" style="margin-top:14px;">
+                        <div>
+                            <div class="eyebrow">Catalogue</div>
+                            <h2>Tous les <em>véhicules</em></h2>
+                        </div>
+                    </div>
+                    <div class="cars-grid">
+                        <div class="car-card" data-brand="Peugeot">
+                            <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=500&q=80"
+                                alt="Peugeot 208">
+                            <div class="car-info">
+                                <div class="car-brand">Peugeot</div>
+                                <h3>208</h3>
+                                <div class="car-meta">2019 · 45 000 km · Diesel · Manuelle</div>
+                                <div class="car-price">22 500 000 Ar</div>
+                                <div class="tag-row"><span class="tag green">✓ Vérifié</span></div>
+                            </div>
+                        </div>
+                        <div class="car-card" data-brand="Hyundai">
+                            <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=500&q=80"
+                                alt="Hyundai i20">
+                            <div class="car-info">
+                                <div class="car-brand">Hyundai</div>
+                                <h3>i20</h3>
+                                <div class="car-meta">2020 · 31 000 km · Essence · Manuelle</div>
+                                <div class="car-price">18 000 000 Ar</div>
+                                <div class="tag-row"><span class="tag green">✓ Vérifié</span></div>
+                            </div>
+                        </div>
+                        <div class="car-card" data-brand="Ford">
+                            <img src="https://images.unsplash.com/photo-1484515991647-c5760fcecfc7?w=500&q=80"
+                                alt="Ford Fiesta">
+                            <div class="car-info">
+                                <div class="car-brand">Ford</div>
+                                <h3>Fiesta</h3>
+                                <div class="car-meta">2019 · 52 000 km · Essence · Manuelle</div>
+                                <div class="car-price">16 000 000 Ar</div>
+                                <div class="tag-row"><span class="tag green">✓ Vérifié</span></div>
+                            </div>
+                        </div>
+                        <div class="car-card" data-brand="Toyota">
+                            <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?w=500&q=80"
+                                alt="Toyota Land Cruiser">
+                            <div class="car-info">
+                                <div class="car-brand">Toyota</div>
+                                <h3>Land Cruiser</h3>
+                                <div class="car-meta">2016 · 110 000 km · Diesel · 4×4</div>
+                                <div class="car-price">58 000 000 Ar</div>
+                                <div class="tag-row"><span class="tag green">✓ Vérifié</span></div>
+                            </div>
+                        </div>
+                        <div class="car-card" data-brand="Peugeot">
+                            <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=500&q=80"
+                                alt="Peugeot 308">
+                            <div class="car-info">
+                                <div class="car-brand">Peugeot</div>
+                                <h3>308</h3>
+                                <div class="car-meta">2018 · 68 000 km · Diesel · Manuelle</div>
+                                <div class="car-price">20 000 000 Ar</div>
+                                <div class="tag-row"><span class="tag green">✓ Vérifié</span></div>
+                            </div>
+                        </div>
+                        <div class="car-card" data-brand="Renault">
+                            <img src="https://images.unsplash.com/photo-1605559424843-9e4c228bf1c2?w=500&q=80"
+                                alt="Renault Megane">
+                            <div class="car-info">
+                                <div class="car-brand">Renault</div>
+                                <h3>Mégane</h3>
+                                <div class="car-meta">2019 · 55 000 km · Diesel · Automatique</div>
+                                <div class="car-price">24 000 000 Ar</div>
+                                <div class="tag-row"><span class="tag green">✓ Vérifié</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════ REPRISE ═══════════════════════ -->
+        <section id="reprise">
+            <div class="page-top">
+                <div class="container">
+                    <div class="eyebrow">Rachat express</div>
+                    <h1>Vendez votre voiture <em>en 48h</em></h1>
+                    <p class="sub">Estimation gratuite, paiement sécurisé — nos experts se déplacent chez vous à
+                        Antananarivo.</p>
+                </div>
+            </div>
+            <div class="container">
+                <div class="stat-row">
+                    <div class="stat"><b>48h</b><span>Délai de paiement</span></div>
+                    <div class="stat"><b>100 %</b><span>Estimation gratuite</span></div>
+                    <div class="stat"><b>Tana</b><span>Zone couverte</span></div>
+                    <div class="stat"><b>0</b><span>Frais cachés</span></div>
+                </div>
+                <div class="section-head">
+                    <h2>Comment ça <em>fonctionne</em> ?</h2>
+                </div>
+                <div class="steps-grid">
+                    <div class="step"><span class="step-num">01</span><b>Estimation en ligne</b>
+                        <p>Remplissez notre formulaire en 2 minutes. Pas d'engagement.</p>
+                    </div>
+                    <div class="step"><span class="step-num">02</span><b>Inspection à domicile</b>
+                        <p>Un expert se déplace gratuitement chez vous à Antananarivo.</p>
+                    </div>
+                    <div class="step"><span class="step-num">03</span><b>Offre ferme sous 24h</b>
+                        <p>Proposition claire basée sur la cote du marché malgache.</p>
+                    </div>
+                    <div class="step"><span class="step-num">04</span><b>Paiement sous 48h</b>
+                        <p>Virement bancaire ou chèque certifié. Dossier complet inclus.</p>
+                    </div>
+                </div>
+                <div class="section-head" style="margin-top:14px;">
+                    <h2>Nos <em>avantages</em></h2>
+                </div>
+                <div class="promise-grid">
+                    <div class="promise-card">
+                        <div class="pico">💰</div><b>Meilleur prix garanti</b>
+                        <p>On compare la cote de votre véhicule avec le marché local.</p>
+                    </div>
+                    <div class="promise-card">
+                        <div class="pico">🏠</div><b>Déplacement gratuit</b>
+                        <p>Notre expert vient à l'adresse de votre choix, sans frais.</p>
+                    </div>
+                    <div class="promise-card">
+                        <div class="pico">📄</div><b>Démarches incluses</b>
+                        <p>Certificat de cession, carte grise : tout est pris en charge.</p>
+                    </div>
+                    <div class="promise-card">
+                        <div class="pico">💳</div><b>Paiement par virement</b>
+                        <p>Virement bancaire ou chèque certifié, sécurisé avant remise des clés.</p>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════ NOTRE PROMESSE ═══════════════════════ -->
+        <section id="promesse">
+            <div class="page-top">
+                <div class="container">
+                    <div class="eyebrow">Qualité certifiée</div>
+                    <h1>Notre <em>Promesse</em></h1>
+                    <p class="sub">Chaque voiture MadaCars passe par un protocole rigoureux. Aucun véhicule ne sort sans
+                        notre validation.</p>
+                </div>
+            </div>
+            <div class="container">
+                <div class="badges" style="margin-top:0;">
+                    <div class="badge">
+                        <div class="ico">🔍</div><b>16 points de contrôle</b><span>Inspection complète</span>
+                    </div>
+                    <div class="badge">
+                        <div class="ico">🛡️</div><b>Garantie 6 mois</b><span>Moteur &amp; boîte</span>
+                    </div>
+                    <div class="badge">
+                        <div class="ico">📋</div><b>Historique complet</b><span>Carnet d'entretien</span>
+                    </div>
+                    <div class="badge">
+                        <div class="ico">🎨</div><b>Préparation esthétique</b><span>Nettoyage complet</span>
+                    </div>
+                </div>
+                <div class="control-list">
+                    <h3>🔧 Les 16 points de contrôle MadaCars</h3>
+                    <div class="ctrl-cols">
+                        <div class="ctrl-item">Moteur et démarrage</div>
+                        <div class="ctrl-item">Boîte de vitesses</div>
+                        <div class="ctrl-item">Freins avant &amp; arrière</div>
+                        <div class="ctrl-item">Direction &amp; suspensions</div>
+                        <div class="ctrl-item">Pneumatiques &amp; jantes</div>
+                        <div class="ctrl-item">Éclairage complet</div>
+                        <div class="ctrl-item">Tableau de bord</div>
+                        <div class="ctrl-item">Climatisation</div>
+                        <div class="ctrl-item">Système électrique</div>
+                        <div class="ctrl-item">Carrosserie &amp; peinture</div>
+                        <div class="ctrl-item">Vitres &amp; rétroviseurs</div>
+                        <div class="ctrl-item">Intérieur &amp; sièges</div>
+                        <div class="ctrl-item">Batterie &amp; alternateur</div>
+                        <div class="ctrl-item">Liquides &amp; niveaux</div>
+                        <div class="ctrl-item">Kilométrage certifié</div>
+                        <div class="ctrl-item">Historique sinistres</div>
+                    </div>
+                </div>
+                <div class="section-head">
+                    <h2>Notre <em>agence</em></h2>
+                </div>
+                <div
+                    style="background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:24px 28px;display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:20px;margin-bottom:28px;">
+                    <div>
+                        <div class="eyebrow" style="margin-bottom:4px;">Adresse</div><b
+                            style="display:block;font-size:16px;">📍 Antananarivo</b><span
+                            style="color:var(--muted);font-size:14px;">67 Ha, Lot IVX · Tsaralalàna</span>
+                    </div>
+                    <div>
+                        <div class="eyebrow" style="margin-bottom:4px;">Horaires</div><span
+                            style="color:var(--muted);font-size:14px;">Lun–Ven : 8h00 – 18h00<br>Samedi : 9h00 –
+                            16h00<br>Dimanche : Fermé</span>
+                    </div>
+                    <div>
+                        <div class="eyebrow" style="margin-bottom:4px;">Téléphone</div><span
+                            style="color:var(--muted);font-size:14px;">+261 20 22 000 00</span>
+                    </div>
+                    <div>
+                        <div class="eyebrow" style="margin-bottom:4px;">Email</div><span
+                            style="color:var(--muted);font-size:14px;">contact@madacars.mg</span>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+            </div>
+        </section>
+
+        <!-- ═══════════════════════ CONTACT ═══════════════════════ -->
+        <section id="contact">
+            <div class="page-top">
+                <div class="container">
+                    <div class="eyebrow">Nous joindre</div>
+                    <h1>Nous <em>contacter</em></h1>
+                    <p class="sub">Notre équipe parle malgache, français et anglais. Réponse garantie sous 24h.</p>
+                </div>
+            </div>
+            <div class="container">
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="cico">📞</div><b>Téléphone</b><span>+261 20 22 000 00<br>Lun–Sam · 8h–18h</span>
+                    </div>
+                    <div class="contact-card">
+                        <div class="cico">📧</div><b>Email</b><span>contact@madacars.mg</span>
+                    </div>
+                    <div class="contact-card">
+                        <div class="cico">💬</div><b>WhatsApp &amp; SMS</b><span>+261 34 000 0000<br>Réponse
+                            rapide</span>
+                    </div>
+                    <div class="contact-card">
+                        <div class="cico">💳</div><b>Visa / Mastercard</b><span>Paiement par carte bancaire
+                            accepté</span>
+                    </div>
+                    <div class="contact-card">
+                        <div class="cico">🏦</div><b>Virement bancaire</b><span>BFV-SG · BNI · BOA Madagascar</span>
+                    </div>
+                    <div class="contact-card">
+                        <div class="cico">🕐</div><b>Horaires d'ouverture</b><span>Lun–Ven : 8h–18h<br>Samedi :
+                            9h–16h<br>Dimanche : fermé</span>
+                    </div>
+                </div>
+                <div class="spacer"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══════════════════════ FOOTER ═══════════════════════ -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-col">
+                <div class="fl">Mada<em>Cars</em></div>
+                <span>Spécialiste voiture d'occasion à Antananarivo depuis 2018.</span>
+                <span style="margin-top:10px;">🇲🇬 Fière entreprise malgache</span>
+            </div>
+            <div class="footer-col">
+                <h4>MadaCars</h4>
+                <a onclick="switchTab('promesse')">Notre Promesse</a>
+                <a onclick="switchTab('promesse')">Notre Agence</a>
+                <a href="#">Actualités</a>
+                <a href="#">Recrutement</a>
+            </div>
+            <div class="footer-col">
+                <h4>Services</h4>
+                <a onclick="switchTab('achat')">Trouver ma voiture</a>
+                <a onclick="switchTab('achat')">Ventes Flash</a>
+                <a onclick="switchTab('reprise')">Estimer ma voiture</a>
+                <a onclick="switchTab('reprise')">Reprise en 48h</a>
+            </div>
+            <div class="footer-col">
+                <h4>Top marques</h4>
+                <a href="#">Toyota</a><a href="#">Peugeot</a>
+                <a href="#">Mitsubishi</a><a href="#">Renault</a><a href="#">Suzuki</a>
+            </div>
+            <div class="footer-col">
+                <h4>Légal</h4>
+                <a href="#">Conditions générales</a>
+                <a href="#">Politique de confidentialité</a>
+                <a href="#">Mentions légales</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>© 2026 MadaCars · Antananarivo, Madagascar · Tous droits réservés</span>
+            <span>Projet HTML / CSS / JavaScript</span>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
