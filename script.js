@@ -18,7 +18,7 @@ document.querySelectorAll('.nav-btn').forEach(btn =>
 /* ============================================================
    RECHERCHE ACCUEIL (Marque + Budget)
 ============================================================ */
-document.querySelector('.btn-red').addEventListener('click', function () {
+document.querySelector('.search-bar .btn-red').addEventListener('click', function () {
     const marqueSelect = document.querySelectorAll('.sf select')[0];
     const budgetSelect = document.querySelectorAll('.sf select')[1];
 
@@ -150,9 +150,12 @@ function closeModal() {
 }
 
 document.addEventListener('click', e => {
+    // Ne pas ouvrir modal si on clique sur un bouton
+    if (e.target.closest('button')) return;
     const card = e.target.closest('.car-card');
     if (card) openModal(card);
 });
+
 
 modalClose.addEventListener('click', closeModal);
 modalOverlay.addEventListener('click', closeModal);
