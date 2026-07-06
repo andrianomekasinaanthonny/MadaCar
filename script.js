@@ -16,30 +16,97 @@ document.querySelectorAll('.nav-btn').forEach(btn =>
 );
 
 /* ============================================================
-   FILTRE PAR MARQUE (section Achat)
+   RECHERCHE ACCUEIL (Marque + Budget)
 ============================================================ */
-document.querySelectorAll('.pill').forEach(pill => {
-    pill.addEventListener('click', () => {
-        // Activer le bouton cliqué
-        document.querySelectorAll('.pill').forEach(p => p.classList.remove('sel'));
-        pill.classList.add('sel');
+document.querySelector('.btn-red').addEventListener('click', function () {
+    const marqueSelect = document.querySelectorAll('.sf select')[0];
+    const budgetSelect = document.querySelectorAll('.sf select')[1];
 
-        const brand = pill.dataset.brand; // "all" ou "Toyota" etc.
+    const marque = marqueSelect.value;
+    const budget = budgetSelect.value;
 
-        document.querySelectorAll('.car-card').forEach(card => {
-            if (brand === 'all' || card.dataset.brand === brand) {
+    // Convertir le budget en nombre
+    const budgetMax = budget === 'Pas de limite'
+        ? Infinity
+        : parseInt(budget.replace(/\s/g, '').replace('Ar', ''));
+
+    // Aller sur la section Achat
+    switchTab('achat');
+
+    // Attendre que la section soit visible puis filtrer
+    setTimeout(() => {
+        let found = 0;
+
+        document.querySelectorAll('#achat .car-card').forEach(card => {
+            const cardBrand = card.dataset.brand;
+            const priceText = card.querySelector('.car-price').childNodes[0].textContent
+                .replace(/\s/g, '').replace('Ar', '');
+            const cardPrice = parseInt(priceText);
+
+            const brandMatch = marque === 'Toutes marques' || cardBrand === marque;
+            const budgetMatch = isNaN(cardPrice) || cardPrice <= budgetMax;
+
+            if (brandMatch && budgetMatch) {
                 card.style.display = 'block';
+                found++;
             } else {
                 card.style.display = 'none';
             }
         });
 
-        // Masquer les titres de section si aucune carte visible dans le groupe
+        // Afficher/masquer les groupes vides
         document.querySelectorAll('.cars-group').forEach(group => {
             const visible = [...group.querySelectorAll('.car-card')]
                 .some(c => c.style.display !== 'none');
             group.style.display = visible ? 'block' : 'none';
         });
+
+        // Message si aucun résultat
+        let noResult = document.getElementById('no-result');
+        if (!noResult) {
+            noResult = document.createElement('div');
+            noResult.id = 'no-result';
+            noResult.style = 'text-align:center;padding:40px;color:#6b7060;font-size:16px;';
+            document.querySelector('#achat .container').appendChild(noResult);
+        }
+        noResult.textContent = found === 0
+            ? '😔 Aucun véhicule ne correspond à votre recherche.'
+            : '';
+
+        // Activer le filtre pill correspondant
+        document.querySelectorAll('.pill').forEach(p => p.classList.remove('sel'));
+        const matchPill = [...document.querySelectorAll('.pill')]
+            .find(p => p.dataset.brand === marque);
+        if (matchPill) matchPill.classList.add('sel');
+        else document.querySelector('.pill[data-brand="all"]').classList.add('sel');
+
+    }, 100);
+});
+
+/* ============================================================
+   FILTRE PAR MARQUE (section Achat)
+============================================================ */
+document.querySelectorAll('.pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+        document.querySelectorAll('.pill').forEach(p => p.classList.remove('sel'));
+        pill.classList.add('sel');
+
+        const brand = pill.dataset.brand;
+
+        document.querySelectorAll('#achat .car-card').forEach(card => {
+            card.style.display =
+                brand === 'all' || card.dataset.brand === brand ? 'block' : 'none';
+        });
+
+        document.querySelectorAll('.cars-group').forEach(group => {
+            const visible = [...group.querySelectorAll('.car-card')]
+                .some(c => c.style.display !== 'none');
+            group.style.display = visible ? 'block' : 'none';
+        });
+
+        // Effacer message no-result
+        const noResult = document.getElementById('no-result');
+        if (noResult) noResult.textContent = '';
     });
 });
 
@@ -82,7 +149,6 @@ function closeModal() {
     document.body.style.overflow = '';
 }
 
-// Ouvrir au clic sur une carte
 document.addEventListener('click', e => {
     const card = e.target.closest('.car-card');
     if (card) openModal(card);
