@@ -52,7 +52,7 @@ document.querySelector('.search-bar .btn-red').addEventListener('click', functio
                 .replace('Ar', '')
                 .replace(/\./g, '');
             const cardPrice = parseInt(priceText);
-            console.log(cardBrand, cardPrice, budgetMax);
+
             const brandMatch = marque === 'Toutes marques' || cardBrand === marque;
             const budgetMatch = isNaN(cardPrice) || cardPrice <= budgetMax;
 
